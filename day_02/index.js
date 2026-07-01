@@ -13,4 +13,5 @@ function handleClick(){
         <p>Movie : ${titleInput} </p>
         <h3>Rating: ${ratingInput}</h3>
     </div>`
+    
 }
