@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+        input{
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+        }
+        button{
+            padding: 10px 15px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #box{
+            width: 300px;
+            height: 150px;
+            margin: 20px auto;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgray;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>InterActive DOM Manipulation</h2>
+    <input type="text" id="colorInput" placeholder="Enter color name">
+    <br>
+    <input type="text" id="textInput" placeholder="Enter Text">
+    <br>
+    <button onclick="changeColor()">Change Background</button>
+    <button onclick="updateText()">Update Text</button>
+    <div id="box" >Initial Text</div>
+    <script>
+        function changeColor(){
+        let color = document.getElementById('colorInput').value;
+        let box = document.getElementById('box');
+        box.style.backgroundColor = color;
+        if(box.style.backgroundColor === " "){
+            alert('Invalid color name');
+        } 
+    }
+     function updateText(){
+        let text = document.getElementById('textInput').value;
+        if(text.trim() === ""){
+            alert('Please enter some text');
+            return;
+        }
+        document.getElementById('box').innerHTML = text;
+     }
+    </script>
+
+</body>
+</html>
