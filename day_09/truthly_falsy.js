@@ -76,8 +76,30 @@
 
 // Nullish coalision Operator
 
-// 
+// let user ;
+// console.log(user ?? 'Loading...')
+// // works for undefined and null, if the  user is undefined or null, it will show the following message, same as alt  of img tag
 
-let user ;
-console.log(user ?? 'Loading...')
-// works for undefined and null, if the  user is undefined or null, it will show the following message, same as alt  of img tag
+// for(let i =0; i<5 ; i++){
+//     console.log('hello world')
+// }
+// console.log(i) //Error -->redernce error
+
+
+// let obj ={
+//     name :"Aman",
+//     age:30,
+//     addess:"Shimla"
+// }
+// for(let key in obj){
+//     console.log(key)
+//     console.log(obj[key])
+// }
+
+// const subjects=['javascript','html','css']
+// for(let subject of subjects){
+//     console.log(subject)
+// }
+
+
+
