@@ -53,3 +53,4 @@ let checkNationality=(country="Indiian")=>{ // here we gave a default parameter 
 // let res=checkNationality("American")
 // console.log(res)
 console.log(checkNationality())
+
