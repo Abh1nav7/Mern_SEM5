@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doucment</title>
+</head>
+<body>
+
+    <form id="form">
+        <input type="text" id="name" placeholder="Name">
+        <br><br>
+        <input type="number" id="age" placeholder="Age">
+        <br><br>
+        <input type="text" id="course" placeholder="Course">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="card"></div>
+
+    <script>
+        let name = document.getElementById("name");
+        let age = document.getElementById("age");
+        let course = document.getElementById("course");
+        let form = document.getElementById("form");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            let student = {
+                name: "",
+                age: 0,
+                course: ""
+            };
+            student.name = name.value;
+            student.age = age.value;
+            student.course = course.value;
+            let card = document.getElementById("card");
+            card.innerHTML = `
+                <h2>Name: ${student.name}</h2>
+                <h2>Age: ${student.age}</h2>
+                <h2>Course: ${student.course}</h2>
+            `
+        })
+    </script>
+</body>
+</html>
