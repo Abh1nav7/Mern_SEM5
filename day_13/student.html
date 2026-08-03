@@ -4,17 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doucment</title>
+    <title>Student Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #card {
+            margin-top: 25px;
+            width: 320px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            display: none;
+        }
+
+        #card h2 {
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 20px;
+        }
+    </style>
 </head>
+
 <body>
 
     <form id="form">
+        <h2>Student Form</h2>
+
         <input type="text" id="name" placeholder="Name">
-        <br><br>
+
         <input type="number" id="age" placeholder="Age">
-        <br><br>
+
         <input type="text" id="course" placeholder="Course">
-        <br><br>
+
         <button type="submit">Submit</button>
     </form>
 
@@ -25,23 +100,28 @@
         let age = document.getElementById("age");
         let course = document.getElementById("course");
         let form = document.getElementById("form");
+
         form.addEventListener("submit", function (event) {
             event.preventDefault();
+
             let student = {
-                name: "",
-                age: 0,
-                course: ""
+                name: name.value,
+                age: age.value,
+                course: course.value
             };
-            student.name = name.value;
-            student.age = age.value;
-            student.course = course.value;
+
             let card = document.getElementById("card");
+
+            card.style.display = "block";
+
             card.innerHTML = `
                 <h2>Name: ${student.name}</h2>
                 <h2>Age: ${student.age}</h2>
                 <h2>Course: ${student.course}</h2>
-            `
-        })
+            `;
+        });
     </script>
+
 </body>
+
 </html>
