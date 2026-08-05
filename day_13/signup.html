@@ -67,7 +67,7 @@
             let user = {
                 name: document.getElementById("name").value,
                 email: document.getElementById("email").value,
-                pass: document.getElementById("password").value
+                password: document.getElementById("password").value
             };
             let users_data = localStorage.getItem("users");
 
@@ -76,18 +76,18 @@
             } else {
                 users_array = JSON.parse(users_data);
             }
-            let emailExists = users_array.some(user => user.email === email.value);
-
+            let emailExists = users_array.some((el)=> el.email == user.email);
             if (emailExists) {
                 alert("User already exists. Please login.");
                 window.location.href = "login.html";
                 return; // Stop the signup process
                 
-            }
+            }else{
             users_array.push(user);
             localStorage.setItem("users", JSON.stringify(users_array));
             form.reset();
             window.location.href = "login.html";
+            }
         }
     </script>
 
