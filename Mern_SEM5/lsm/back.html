@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        #show {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">
+                            User Preferences
+                        </h3>
+                        <input type="text" id="name" class="form-control mb-3" placeholder="Enter Name">
+                        <input type="text" id="color" class="form-control mb-3" placeholder="Enter Background Color">
+                        <button class="btn btn-primary w-100 mb-2" onclick="savepreference()">
+                            Save Preferences
+                        </button>
+                        <button class="btn btn-danger w-100" onclick="resetPreference()">
+                            Reset
+                        </button>
+                        <div id="show" class="text-center mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let savepreference = () => {
+            let username = document.getElementById("name").value;
+            let color = document.getElementById("color").value;
+
+            localStorage.setItem("name", username);
+            localStorage.setItem("color", color);
+
+            document.getElementById("show").innerText =
+                "Welcome, " + username + "!";
+
+            document.body.style.backgroundColor = color;
+        }
+        function resetPreference() {
+            localStorage.removeItem("name");
+            localStorage.removeItem("color");
+            document.getElementById("name").value = "";
+            document.getElementById("color").value = "";
+            document.getElementById("show").innerText = "";
+            document.body.style.backgroundColor = "#f4f4f4";
+        }
+        window.onload = function () {
+            let name = localStorage.getItem("name");
+            let color = localStorage.getItem("color");
+            if (name) {
+                document.getElementById("show").innerText =
+                    "Welcome, " + name + "!";
+                document.getElementById("name").value = name;
+            }
+            if (color) {
+                document.body.style.backgroundColor = color;
+                document.getElementById("color").value = color;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to Product Page</h1>
+        <h3 id="userName"></h3>
+        <button onclick="handlelogout()">Logout</button>
+        <a href="cart.html">Go to Cart</a>
+        <div id="cards"></div>
+    </div>
+    <div id="falseUser"></div>
+    <script>
+
+        let checkStatus = sessionStorage.getItem("isLoggedIn");
+        let container = document.getElementById("container");
+        let falseUser = document.getElementById("falseUser");
+        let userName = document.getElementById("userName");
+        let cards = document.getElementById("cards")
+
+        if (checkStatus === "true") {
+            container.style.display = "block";
+            let currentUser = JSON.parse(sessionStorage.getItem("current_user"));
+
+            if (currentUser) {
+                userName.innerHTML = `User : ${currentUser.name}`;
+            }
+
+        }
+        else {
+
+            container.style.display = "none";
+            falseUser.innerHTML = `<h1>Please login first</h1>
+            <a href="login.html">Click here to Login</a>
+            `;
+        }
+        let handlelogout=()=>{
+            sessionStorage.removeItem("isLoggedIn")
+            window.location.reload()
+        }
+        // Session storage => your data will e stored till currebt session means till browser or tab closes;
+        //API Stuff
+        async function fetchData(){
+            let resp = await fetch("https://dummyjson.com/products")
+            let data = await resp.json();
+            let products = data.products;
+            localStorage.setItem("products", JSON.stringify(products))
+            products.forEach(element => {
+                cards.innerHTML += `
+                <img height="200px" src="${element.images[0]}">
+                <h3>${element.title}</h3>
+                <button onclick="handleCart(${element.id})"> Add to Cart </button>
+                `
+            })
+            console.log(products);
+        }
+        fetchData()
+        function handleCart(id){
+            // alert(`clicked  ${id}`)
+            let all_products=JSON.parse(localStorage.getItem("products"))
+            let cartItem=all_products.find((el)=>el.id==id)
+            let array=JSON.parse(localStorage.getItem("cart")) ||[]
+            array.push(cartItem)
+            localStorage.setItem("cart",JSON.stringify(array))
+        }
+    </script>
+</body>
+</html>

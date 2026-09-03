@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="cartItems"></div>
+    <a href="product.html">Back to Products</a>
+    <!-- <button onclick="window.location.href='product.html'">Back to Products</button> -->
+    <script>
+        let cartItemsDiv = document.getElementById("cartItems");
+        let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cartItems.length === 0) {
+            cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        } else {
+            cartItems.forEach(item => {
+                cartItemsDiv.innerHTML += `
+                    <div>
+                        <h3>${item.title}</h3>
+                        <img src="${item.images[0]}" height="100px">
+                        <p>Price: $${item.price}</p>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

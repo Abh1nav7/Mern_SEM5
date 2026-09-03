@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+
+        .note-card {
+            border: 2px solid #0d6efd;
+            border-radius: 12px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Notes Manangement </h3>
+                        <form id="NoteForm" onsubmit="handleSubmit(event)">
+                            <textarea id="note" class="form-control mb-3" rows="5" placeholder="Enter Notes"></textarea>
+                            <button class="btn btn-primary w-100">
+                                Save Notes
+                            </button>
+                            <button type="button" class="btn btn-success w-100 mt-2" onclick="loadNotes()">
+                                Load Notes
+                            </button>
+                            <button type="button" class="btn btn-danger w-100 mt-2" onclick="clearNotes()">
+                                Clear Notes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            let note = document.getElementById("note").value
+            if (note === "") {
+                alert("Please enter a note.");
+                return;
+            }
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            notes.push(note);
+            localStorage.setItem("notes", JSON.stringify(notes));
+            document.getElementById("note").value = "";
+            alert("Note Saved");
+        }
+        function loadNotes() {
+            let notes = JSON.parse(localStorage.getItem("notes")) || [];
+            document.getElementById("note").value = notes.join("\n");
+        }
+        function clearNotes() {
+            localStorage.removeItem("notes");
+            document.getElementById("note").value = "";
+        }
+        window.onload = loadNotes;
+    </script>
+</body>
+
+</html>

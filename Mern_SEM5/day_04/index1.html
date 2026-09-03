@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+    padding:20px;
+    font-family:Arial, sans-serif;
+    }
+
+    div{
+        margin-bottom:15px;
+    }
+
+    label{
+        display:block;
+        margin-bottom:5px;
+    }
+
+    input{
+        padding:8px;
+        width:250px;
+    }
+
+    button{
+        padding:8px 15px;
+    }
+
+    table{
+        margin-top:15px;
+        border-collapse:collapse;
+    }
+
+    th,td{
+        padding:10px;
+    }
+    #hideData{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div>
+            <label for="">Name</label>
+            <input type="text" id = "name">
+        </div>
+        <div>
+            <label for="">Email</label>
+            <input type="email" id = "email">
+        </div>
+        <div>
+            <label for="">Age</label>
+            <input type="number" id = "age">
+        </div>
+        <div>
+            <button id="submit">Submit</button>
+        </div>
+    </form>
+    <form action="">
+        <div id="hideData">
+            <h1>Student Data</h1>
+            <table border="4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody id="tableContent">
+                    
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+    var btn = document.getElementById("submit")
+    btn.addEventListener("click",function(e){
+        e.preventDefault()
+        var name = document.getElementById("name")
+        var email = document.getElementById("email")
+        var age = document.getElementById("age") 
+
+        var inpName = name.value 
+        var inpEmail = email.value
+        var inpAge = age.value
+        var tbody = document.getElementById("tableContent")
+        tbody.innerHTML += `
+            <tr>
+                <td> ${inpName}</td>
+                <td>${inpEmail}</td>
+                <td>${inpAge}</td>
+            </tr>
+        `
+        name.value=""
+        email.value=""
+        
+        document.getElementById("hideData").style.display = "block";
+    })
+</script>
+</body>
+</html>
