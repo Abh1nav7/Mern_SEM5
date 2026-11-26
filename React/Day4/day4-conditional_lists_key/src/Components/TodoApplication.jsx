@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 const TodoApplication = () => {
     const [task, setTask] = useState("")
+    const[count, setCount] = useState(0)
     const [todos, setTodos] = useState([])
     const handleClick = () => {
         if (task.trim() === "") return
@@ -15,6 +16,13 @@ const TodoApplication = () => {
     }
     const handleDelete = (id) => {
         setTodos(todos.filter((el) => el.id !== id))
+    }
+    const handleStatus = (id) => {
+        setTodos((currentTodos) =>
+            currentTodos.map((todo) =>
+                todo.id === id ? { ...todo, status: !todo.status } : todo
+            )
+        )
     }
     return (
         <div>
@@ -46,13 +54,25 @@ const TodoApplication = () => {
                             }}
                             key={el.id}
                         >
-                            <h2>{el.task}</h2>
+                            <h2
+                                onClick={() => handleStatus(el.id)}
+                                style={{
+                                    textDecoration: el.status ? "line-through red" : "none",
+                                    cursor: "pointer"
+                                }}
+                            >
+                                {el.task}
+                            </h2>
                             <button onClick={() => handleDelete(el.id)}>
                                 Delete
                             </button>
                         </div>
                     )
                 })}
+            </div>
+            <div>
+                <h1>Count: {count}</h1>
+                <button onClick={() => setCount(count + 1)}>Increment</button>
             </div>
         </div>
     )
